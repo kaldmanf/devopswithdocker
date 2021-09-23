@@ -1,0 +1,37 @@
+version: '3.5' 
+
+services: 
+
+    backend: 
+      image: kaldmanf/kurkkumopo-backend
+      build: ./ml-kurkkumopo-backend
+      ports: 
+        - 5000:5000 
+      environment: 
+        - REQUEST_ORIGIN=http://localhost:3000
+      container_name: kurkkumopo-backend
+      volumes:
+        - model:/src/model
+        - data:/src/data
+        # - imgs:/src/imgs
+
+    training: 
+      image: kaldmanf/kurkkumopo-training
+      build: ./ml-kurkkumopo-training
+      container_name: kurkkumopo-training
+      volumes:
+        - model:/src/model
+        - data:/src/data
+        
+    frontend: 
+      image: kaldmanf/kurkkumopo-frontend
+      build: ./ml-kurkkumopo-frontend
+      ports: 
+        - 3000:3000
+      environment: 
+        - REACT_APP_BACKEND_URL=http://localhost:5000
+      container_name: kurkkumopo-frontend
+
+volumes:
+  data:
+  model:

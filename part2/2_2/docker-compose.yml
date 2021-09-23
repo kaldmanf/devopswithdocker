@@ -1,0 +1,13 @@
+version: '3.5' 
+
+services: 
+
+    simple-web-service: 
+      image: kaldmanf/simple-web-service-cmd
+      build: . 
+      ports: 
+        - 8080:8080 
+      command: server
+      # volumes: 
+      #   - ./text.log:/usr/src/app/text.log
+      container_name: simple-web-service-cmd

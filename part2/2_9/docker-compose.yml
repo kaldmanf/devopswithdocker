@@ -1,0 +1,41 @@
+version: '3.5' 
+
+services: 
+
+    backend: 
+      image: kaldmanf/backend-2_3
+      build: ./back
+      ports: 
+        - 8080:8080 
+      environment: 
+        - REQUEST_ORIGIN=http://localhost:5000
+        - PORT=8080
+        - REDIS_HOST=redis
+        - POSTGRES_HOST=db
+      command: ./server
+      depends_on:
+        - db
+      container_name: backend-2_3
+
+    frontend: 
+      image: kaldmanf/frontend-2_3
+      build: ./front
+      ports: 
+        - 5000:5000
+      depends_on:
+        - backend
+      environment: 
+        - REACT_APP_BACKEND_URL=http://localhost:8080
+      container_name: frontend-2_3
+    
+    redis:
+      image: redis
+
+    db:
+      image: postgres
+      restart: always
+      environment:
+        POSTGRES_PASSWORD: postgres
+      volumes:
+        - ./data:/var/lib/postgresql/data
+    
