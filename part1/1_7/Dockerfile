@@ -1,0 +1,9 @@
+# Start from the alpine image that is smaller but no fancy tools
+FROM devopsdockeruh/simple-web-service:alpine
+
+# Use /usr/src/app as our workdir. The following instructions will be executed in this location.
+WORKDIR /usr/src/app
+
+
+# When running docker run the command will be ./hello.sh
+CMD server

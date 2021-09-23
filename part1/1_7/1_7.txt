@@ -1,0 +1,2 @@
+docker build . -t simple-web-service:web-server
+docker run simple-web-service:web-server

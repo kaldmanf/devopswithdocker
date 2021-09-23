@@ -1,0 +1,7 @@
+(base) fredrikkaldman@fair ~ % docker ps -a            
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+(base) fredrikkaldman@fair ~ % 
+
+(base) fredrikkaldman@fair ~ % docker images
+REPOSITORY   TAG       IMAGE ID   CREATED   SIZE
+(base) fredrikkaldman@fair ~ % 
